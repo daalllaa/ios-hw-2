@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    var membersNamesArray  : [String] = [""]
+    var membersNamesArray  : [String] = []
     
     var convertToLetter = true
     @IBOutlet weak var secretSocietyNameLabel: UILabel!
@@ -19,7 +19,7 @@ class ViewController: UIViewController {
         let member = nameTextField.text!
         
         // MARK: -   1️⃣ تحت الخط membersNamesArray إلي المصفوفه memberقم بإضافة المتغير
-        
+        membersNamesArray.append(member)
         
         
         // MARK: -   النهاية
@@ -33,14 +33,17 @@ class ViewController: UIViewController {
     @IBAction func letterButton(_ sender: Any) {
         
         // MARK: -  4️⃣ functionCall داخل المتغير  secretNameLetter قم باستدعاء الدالة
+        let functionCall = secretNameLetter(members: membersNamesArray)
+       
+
+        secretSocietyNameLabel.text = functionCall
         
-        var functionCall = ""
-        
-        
+            
+        }
         // MARK: -   النهاية
         
         
-        secretSocietyNameLabel.text =  functionCall
+   
     }
     
     
@@ -50,13 +53,19 @@ class ViewController: UIViewController {
         
         
         
+      
         // MARK: -  5️⃣ functionCall داخل المتغير  secretNameEmoji قم باستدعاء الدالة
+      
         
-        var functionCall = ""
+        
+        let functionCall = encrypWith(emoji: true, array: membersNamesArray)
+        
+    
+        
         
         // MARK: -   النهاية
         
-        secretSocietyNameLabel.text =  functionCall
+         secretSocietyNameLabel.text =  functionCall
         
         
     }
@@ -65,7 +74,14 @@ class ViewController: UIViewController {
     
     
     // MARK: - 2️⃣ تحت هذا الخط secretNameLetter قم بكتابة الداله
-    
+    func secretNameLetter(members:[String])-> String{
+       var secret = ""
+        for member in members{
+            secret += String (member.prefix(1)).uppercased()
+            
+        }
+        return secret
+      }
     
     // MARK: -   النهاية
     
@@ -75,10 +91,54 @@ class ViewController: UIViewController {
     
     // MARK: - 3️⃣ تحت هذا الخط secretNameEmoji قم بكتابة الداله
     
+func =
+    [
+         "A": "😂",
+              "B" :"😝",
+              "C" : "😁",
+              "D" : "😱",
+              "E" :"👉",
+              "F" :"🙌",
+              "G" : "🍻",
+              "H" : "🔥",
+              "I": "🌈",
+              "J":"☀",
+              "K" : "🎈",
+              "L" :"🌹",
+              "M": "💄",
+              "N": "🎀",
+              "O": "⚽",
+              "P": "🎾",
+              "Q": "🏁",
+              "R": "😡",
+              "S" : "👿",
+              "T" :"🐻",
+              "U": "🐶",
+              "V": "🐬",
+              "W": "🐟",
+              "X" : "🍀",
+              "Y" : "👀",
+              "Z": "🚗",
+        ]
+                  
+
+
+
+
+
+
     
     // MARK: -   النهاية
-    
-    
-    
+     
+   // Bonus
+    func encrypWith(emoji:Bool , array : [String])-> String{
+        if emoji{
+            return secretNameEmoji (array: array)
+        }
+        else{
+            return secretNameLetter(members: array)
+        }
 }
+
+    
 
